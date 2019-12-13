@@ -1,0 +1,97 @@
+Given a binary tree, flatten it to a linked list in-place.
+
+For example, given the following tree:
+
+    1
+   / \
+  2   5
+ / \   \
+3   4   6
+The flattened tree should look like:
+
+1
+ \
+  2
+   \
+    3
+     \
+      4
+       \
+        5
+         \
+          6
+
+
+给定一个二叉树，原地将它展开为链表。
+
+例如，给定二叉树
+
+    1
+   / \
+  2   5
+ / \   \
+3   4   6
+将其展开为：
+
+1
+ \
+  2
+   \
+    3
+     \
+      4
+       \
+        5
+         \
+          6
+
+
+code 代码 ↓
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        while(root){
+            if(root -> left){
+                TreeNode* p = root -> left;
+                while(p -> right != NULL)
+                    p = p -> right;
+                p -> right = root -> right;
+                root -> right = root -> left;
+                root -> left = NULL;
+            }
+        root = root -> right;
+        }
+        return;
+    }
+};
+
+1.Determine whether the root node is empty
+2.Decide if root has left subtree
+3.Find the rightmost node of its left subtree
+4.Let the root's right subtree equal the rightmost node of the left subtree's right pointer scope
+5.Move the root's left subtree to root's right pointer scope
+6.Let the root's left pointer scope equal null
+7.Let root equal root's right pointer scope
+8.continue this loop
+
+1.判断root是否为空
+2.判断root有没有左子树
+3.找到左子树最右边的那个节点
+4.让root的右子树接到左子树最右边节点的右边
+5.把root的左子树移动到root的右子树上
+6.把root的左子树置空
+7.让root等于root -> right
+8.如上循环
+
+flatten  (使)变平
+in-place 原地(算法)
