@@ -1,0 +1,55 @@
+Given a linked list, swap every two adjacent nodes and return its head.
+
+You may not modify the values in the list's nodes, only nodes itself may be changed.
+
+ 
+
+Example:
+
+Given 1->2->3->4, you should return the list as 2->1->4->3.
+
+
+
+给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
+
+你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+
+ 
+
+示例:
+
+给定 1->2->3->4, 你应该返回 2->1->4->3.
+
+code 代码 ↓
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if(!head || !head -> next)
+            return head;
+        ListNode* p = head -> next;
+        head -> next = swapPairs(p -> next);
+        p -> next = head;
+        return p;
+    }
+};
+
+1.Termination condition of recursion is find the last or NULL
+2.Process of recursion is that let head -> next equal the head node which is swaped
+3.swap head and head -> next
+
+
+
+1.递归的终止条件是找到最后一个节点或空
+2.递归的过程是让head -> next等于已经交换好的链表中前面的节点
+3.交换当前两个节点
+
+adjacent 邻近的
