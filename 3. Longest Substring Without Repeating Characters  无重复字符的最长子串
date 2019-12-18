@@ -1,0 +1,68 @@
+Given a string, find the length of the longest substring without repeating characters.
+
+Example 1:
+
+Input: "abcabcbb"
+Output: 3 
+Explanation: The answer is "abc", with the length of 3. 
+Example 2:
+
+Input: "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+Example 3:
+
+Input: "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3. 
+             Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
+
+给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+
+示例 1:
+
+输入: "abcabcbb"
+输出: 3 
+解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+示例 2:
+
+输入: "bbbbb"
+输出: 1
+解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
+示例 3:
+
+输入: "pwwkew"
+输出: 3
+解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
+     请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
+
+
+code 代码 ↓
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int i = 0;
+        int j, k;
+        int max = 0;
+        for(j = 0; j < s.size(); j++){
+            for(k = i; k < j; k++){
+                if(s[k] == s[j]){
+                    i = k + 1;
+                    break;
+                }
+            }
+            if(j - i + 1 > max)
+                max = j - i + 1;
+        }
+        return max;
+    }
+};
+
+
+Determine whether this variable has appeared is this arry. If it has appeared, continue to judge from the previous variable of this
+variable, and return the judgement with the largest length
+
+判断这个变量在这个数组里是否出现过，出现过就从这个变量前一个变量继续判断，返回长度最大的一次判断
+
+subsequence 子序列
