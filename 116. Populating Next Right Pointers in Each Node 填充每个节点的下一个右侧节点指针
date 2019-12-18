@@ -1,0 +1,118 @@
+You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
+
+struct Node {
+  int val;
+  Node *left;
+  Node *right;
+  Node *next;
+}
+Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+
+Initially, all next pointers are set to NULL.
+
+ 
+
+Follow up:
+
+You may only use constant extra space.
+Recursive approach is fine, you may assume implicit stack space does not count as extra space for this problem.
+ 
+
+Example 1:
+
+
+
+Input: root = [1,2,3,4,5,6,7]
+Output: [1,#,2,3,#,4,5,6,7,#]
+Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
+ 
+
+Constraints:
+
+The number of nodes in the given tree is less than 4096.
+-1000 <= node.val <= 1000
+
+给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
+
+struct Node {
+  int val;
+  Node *left;
+  Node *right;
+  Node *next;
+}
+填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。
+
+初始状态下，所有 next 指针都被设置为 NULL。
+
+ 
+
+示例：
+
+
+
+输入：{"$id":"1","left":{"$id":"2","left":{"$id":"3","left":null,"next":null,"right":null,"val":4},"next":null,"right":{"$id":"4","left":null,"next":null,"right":null,"val":5},"val":2},"next":null,"right":{"$id":"5","left":{"$id":"6","left":null,"next":null,"right":null,"val":6},"next":null,"right":{"$id":"7","left":null,"next":null,"right":null,"val":7},"val":3},"val":1}
+
+输出：{"$id":"1","left":{"$id":"2","left":{"$id":"3","left":null,"next":{"$id":"4","left":null,"next":{"$id":"5","left":null,"next":{"$id":"6","left":null,"next":null,"right":null,"val":7},"right":null,"val":6},"right":null,"val":5},"right":null,"val":4},"next":{"$id":"7","left":{"$ref":"5"},"next":null,"right":{"$ref":"6"},"val":3},"right":{"$ref":"4"},"val":2},"next":null,"right":{"$ref":"7"},"val":1}
+
+解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。
+ 
+
+提示：
+
+你只能使用常量级额外空间。
+使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。
+
+code 代码 ↓
+
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node* next;
+
+    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val, Node* _left, Node* _right, Node* _next)
+        : val(_val), left(_left), right(_right), next(_next) {}
+};
+*/
+class Solution {
+public:
+    int flag = 1;
+    Node* connect(Node* root) {
+        if(!root)
+            return NULL;
+        if(flag){
+            root -> next = NULL;
+            flag = 0;
+        }
+        if(!root -> left)
+            return root;
+        root -> left -> next = root -> right;
+        if(root -> next)
+            root -> right -> next = root -> next -> left;
+        else
+            root -> next = NULL;
+        connect(root -> left);
+        connect(root -> right);
+        return root;
+    }
+};
+
+1.Assign the right node  to left node's next
+2.Assign the root's next's left node to the root's right node's next, if root doesn't have next, assign NULL
+3.Traversal
+
+1.把右节点赋值给左节点的next
+2.把root的next的左节点赋值给右节点，假如没有next就赋值null
+3.遍历
+ 
+
+populating 填充
+implicit 隐含的
+assume 假设
