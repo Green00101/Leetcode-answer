@@ -9,7 +9,6 @@ Return a list of the words in words that match the given pattern. 
 You may return the answer in any order.
 
  
-
 Example 1:
 
 Input: words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"
