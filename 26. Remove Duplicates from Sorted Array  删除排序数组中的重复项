@@ -69,7 +69,6 @@ for (int i = 0; i < len; i++) {
     print(nums[i]);
 }
 
-
 code 代码 ↓
 
 class Solution {
