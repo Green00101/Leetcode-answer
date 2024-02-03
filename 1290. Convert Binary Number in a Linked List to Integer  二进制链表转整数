@@ -3,7 +3,6 @@ Given head which is a reference node to a singly-linked list. The value of each
 Return the decimal value of the number in the linked list.
 
  
-
 Example 1:
 
 
