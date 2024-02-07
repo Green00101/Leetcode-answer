@@ -5,7 +5,6 @@ To represent a cycle in the given linked list, we use an integer pos which repre
 Note: Do not modify the linked list.
 
 
-
 Example 1:
 
 Input: head = [3,2,0,-4], pos = 1
