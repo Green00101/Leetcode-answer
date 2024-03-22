@@ -4,7 +4,7 @@ Consider each adjacent pair of elements [a, b] = [nums[2*i], nums[2*i+1]] (wit
 
 Return the decompressed list.
 
- 
+
 Example 1:
 
 Input: nums = [1,2,3,4]
